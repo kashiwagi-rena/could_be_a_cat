@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 
 def app():
-  st.title("「ねこ」かもしれない？？？")
+  st.title("「ねこ」かもしれない？")
   model = YOLO('yolov8n.pt')
   class_names_map = model.names
 
