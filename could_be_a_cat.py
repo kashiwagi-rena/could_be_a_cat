@@ -5,13 +5,13 @@ from ultralytics import YOLO
 
 
 def app():
-  st.title("ねこかもしれない")
+  st.title("「ねこ」かもしれない？？？")
   model = YOLO('yolov8n.pt')
   class_names_map = model.names
 
   with st.form("my_form"):
-    uploaded_image = st.file_uploader("ねこの画像を選択してください", type=["jpg", "jpeg", "png"])
-    st.form_submit_button(label='猫を検知する')
+    uploaded_image = st.file_uploader("ねこの画像を入れてください　YOLOが、猫を診断してくれます　保存等はされません　安心してください", type=["jpg", "jpeg", "png"])
+    st.form_submit_button(label='ちゃんと「ねこ」か調べる')
 
   if uploaded_image:
         image = Image.open(uploaded_image)
@@ -25,19 +25,19 @@ def app():
         if results[0].boxes.conf.numel() > 0:
           item_value = results[0].boxes.conf.item()
           if item_value > 0.8:
-              st.markdown('## 猫です！！！')
+              st.markdown('## 「ねこ」です！！！')
               st.image(annotated_image_pil, caption="Detected Objects.", use_column_width=True)
           elif item_value > 0.6:
-              st.markdown('## 多分猫です！')
+              st.markdown('## 多分「ねこ」です！')
               st.image(annotated_image_pil, caption="Detected Objects.", use_column_width=True)
           elif item_value > 0.4:
-              st.markdown('## ねこかもしれない？')
+              st.markdown('## 「ねこ」かもしれない？')
               st.image(annotated_image_pil, caption="Detected Objects.", use_column_width=True)
           else:
-              st.markdown('## さすがに、ねこじゃないかもしれない・・・？')
+              st.markdown('## さすがに、「ねこ」じゃないかもしれない・・・？')
               st.image(annotated_image_pil, caption="Detected Objects.", use_column_width=True)
         else:
-            st.markdown('## ねこ以外は、検知する気がありません！')
+            st.markdown('## 「ねこ！！！」以外は、検知する気がありません！')
 
         
         
